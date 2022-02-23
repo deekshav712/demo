@@ -2,7 +2,7 @@
 #include<fcntl.h>
 #include<arpa/inet.h>
 #include<unistd.h>
-int main()
+void main()
 {
 char fname[50],buffer[1024];
 int s,n,source,file;
@@ -20,5 +20,4 @@ send(s,fname,sizeof(fname),0);
 while((n=recv(s,buffer,sizeof(buffer),0))>0)
 printf("received");
 printf("content %s",buffer);
-return 0;
 }
