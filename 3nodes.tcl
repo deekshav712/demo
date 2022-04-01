@@ -1,3 +1,4 @@
+#Simulate a three nodes point--to--point network with duplex links between them.Set the queue size and vary the bandwidth and find the number of packets dropped.
 set val(stop) 10.0 ;#time of simulation end
 #create a ns simulator
 set ns [new Simulator]
