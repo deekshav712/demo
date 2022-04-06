@@ -1,3 +1,7 @@
+#write a shell script to implement terminal locking.it should prompt for the user for a password. 
+#After accepting the password entered by the user, it must prompt again for the matching password as confirmation and if match occurs, 
+#it must lock the keyword until a matching password is entered again by the user. Note the script must be written to disregard BREAK, control-D. 
+#No time limit need to be implemented for the lock duration
 echo "\nEnter a password:\n"
 stty -echo
 read p1
