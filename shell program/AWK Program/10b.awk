@@ -1,4 +1,5 @@
-BEGIN{
+#Write an awkscript to delete duplicated line from a text file. The order of the original lines must remain unchanged.
+#BEGIN{
 print("Delete Duplicate lines")
 print("-----------------------")
 }
