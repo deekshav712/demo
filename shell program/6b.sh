@@ -1,6 +1,5 @@
-#Write s a shell script to find a file/s that matches a pattern given as command line argument
-#in the home directory, display the contents of the file and copy the file into the directory
-#~/mydir.
+#Write a shell script to list all the files in a directory whose filename is at least 10 characters.
+#(use expr command to check the length). 
 for i in `ls`
 do
 fl=`expr length $i`
