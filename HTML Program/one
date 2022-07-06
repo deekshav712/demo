@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Basic HTML tags</title>
+    </head>
+    <body>
+<h1>Basic Tags</h1>
+<h2>Basic Tags</h2>
+<h3>Basic Tags</h3> 
+<h4>Basic Tags</h4>
+<h5>Basic Tags</h5>
+<h6>Basic Tags</h6>
+<img src="sam.jpg" alt="web programming" width="20%" height="150"/>
+<img src="alive11.png" alt="alive" />
+<hr>
+
+<p>
+    <b>MCA</b>
+        <i>VCET</i>
+        <u>puttur</u>
+        <b><i><u>Vivekananda</u></i></b>
+        <strong>MCA</strong>
+        <em>2nd sem</em>
+        <small>student</small>
+</p>
+<a href="second.html">move to next page</a>
+    </body>
+</html>
