@@ -1,0 +1,4 @@
+mysql -h 192.168.14.71 -u VP21MC007 -p
+Enter password:Vcet@2022
+create database VP21MC007_college;
+use VP21MC007_college;
