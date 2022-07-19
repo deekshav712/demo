@@ -102,6 +102,7 @@ insert into AUTHOR values(2,'Baidyanath Mishra','India',52);
 insert into AUTHOR values(3,'Ellis Horowitz','US',41);
 insert into AUTHOR values(4,'Deepak Kehmani','India',39);
 insert into AUTHOR values(5,'Yunus','Japan',34);
+
 mysql> select * from AUTHOR;
 +----------+-------------------+-----------+------+
 | authorid | authorname        | country   | age  |
@@ -112,8 +113,6 @@ mysql> select * from AUTHOR;
 |        4 | Deepak Kehmani    | India     |   39 |
 |        5 | Yunus             | Japan     |   34 |
 +----------+-------------------+-----------+------+
-
-
 
 create table BOOK(bookid varchar(10) primary key,
 bookname char(20),
@@ -291,6 +290,7 @@ WHERE STUDENT.USN IN
 | Teja          |
 | Akash Krishna |
 +---------------+
+  
 SELECT DISTINCT NAME
 FROM STUDENT,BORROW
 WHERE STUDENT.USN NOT IN
@@ -325,6 +325,12 @@ STUDENT.BRANCHID=BRANCH.BRANCHID AND
 BORROW.BOOKID=BOOK.BOOKID AND
 BOOK.AUTHORID=AUTHOR.AUTHORID AND
 STUDENT.SEM=2 AND BRANCH.BNAME="MCA";
+
++------------+---------------+-------+----------+---------------+
+| USN        | NAME          | BNAME | BOOKNAME | BORROWED_DATE |
++------------+---------------+-------+----------+---------------+
+| 4VP21MC002 | Akash Krishna | MCA   | DBMS     | 2004-01-01    |
++------------+---------------+-------+----------+---------------+
 
 
 SELECT * FROM STUDENT
