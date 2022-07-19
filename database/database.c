@@ -72,17 +72,6 @@ mysql> SELECT * FROM STUDENT;
 | 4VP21MC053 | Tushar Shetty | Puttur  | B1       |    2 |
 +------------+---------------+---------+----------+------+
 
-insert into STUDENT values('4VP18CS058','Varun','Puttur','B3',8);
-insert into STUDENT values('4VP19ME021','Sunil','Puttur','B5',6);
-insert into STUDENT values('4VP20AI040','Anagha','Puttur','B4',4);
-insert into STUDENT values('4VP20MB010','Teja','Puttur','B2',4);
-insert into STUDENT values('4VP21MC001','Aishwarya','Puttur','B1',2);
-insert into STUDENT values('4VP21MC002','Akash Krishna','Puttur','B1',2);
-insert into STUDENT values('4VP21MC003','Charithra','Puttur','B1',2);
-insert into STUDENT values('4VP21MC031','Rakshith GT','Puttur','B1',2);
-insert into STUDENT values('4VP21MC053','Tushar Shetty','Puttur','B1',2);
-
-
 create table AUTHOR(authorid int(10) primary key,
 authorname char(20),
 country char(20),
@@ -157,7 +146,6 @@ primary key(usn,bookid),
 foreign key(usn) references STUDENT(usn),
 foreign key(bookid) references BOOK(bookid));
 
-
 mysql> desc BORROW;
 +---------------+-------------+------+-----+---------+-------+
 | Field         | Type        | Null | Key | Default | Extra |
@@ -166,7 +154,6 @@ mysql> desc BORROW;
 | bookid        | varchar(10) | NO   | PRI | NULL    |       |
 | borrowed_date | date        | YES  |     | NULL    |       |
 +---------------+-------------+------+-----+---------+-------+
-
 insert into BORROW values('4VP18CS058','BK3','2010-05-21');
 insert into BORROW values('4VP19ME021','BK5','2018-11-11');
 insert into BORROW values('4VP20AI040','BK4','2009-02-10');
@@ -183,19 +170,31 @@ mysql> SELECT * FROM BORROW;
 | 4VP21MC002 | BK1    | 2004-01-01    |
 +------------+--------+---------------+
 
-
-
-select * from student,branch
-where branchid=(select * from branch
-where branchname='MECH');
-
 SELECT USN,NAME 
 FROM STUDENT,BRANCH
 WHERE STUDENT.BRANCHID=BRANCH.BRANCHID AND
-bname="MCA";
+BNAME="MCA";
++------------+---------------+
+| USN        | NAME          |
++------------+---------------+
+| 4VP21MC001 | Aishwarya     |
+| 4VP21MC002 | Akash Krishna |
+| 4VP21MC003 | Charithra     |
+| 4VP21MC031 | Rakshith GT   |
+| 4VP21MC053 | Tushar Shetty |
++------------+---------------+
 
-
-SELECT ALL branchid;
+SELECT ALL BRANCHID
+FROM BRANCH;
++----------+
+| BRANCHID |
++----------+
+| B1       |
+| B2       |
+| B3       |
+| B4       |
+| B5       |
++----------+
 
 SELECT * FROM AUTHOR 
 WHERE COUNTRY LIKE "%nd%";
@@ -205,7 +204,6 @@ WHERE COUNTRY LIKE "%nd%";
 |        2 | Baidyanath Mishra | India   |   52 |
 |        4 | Deepak Kehmani    | India   |   39 |
 +----------+-------------------+---------+------+
-
 
 SELECT * FROM AUTHOR
 WHERE COUNTRY LIKE "_ND__";
@@ -231,7 +229,6 @@ WHERE bname="MCA" AND
 STUDENT.branchid=BRANCH.branchid
 ORDER BY NAME
 DESC;
-
 +------------+---------------+
 | USN        | NAME          |
 +------------+---------------+
@@ -246,7 +243,6 @@ SELECT USN FROM
 STUDENT
 UNION
 SELECT USN FROM BORROW;
-
 +------------+
 | USN        |
 +------------+
@@ -268,7 +264,6 @@ WHERE SEM IS NULL;
 SELECT DISTINCT NAME FROM
 STUDENT,BORROW
 WHERE STUDENT.USN=BORROW.USN;
-
 +---------------+
 | NAME          |
 +---------------+
@@ -325,15 +320,25 @@ STUDENT.BRANCHID=BRANCH.BRANCHID AND
 BORROW.BOOKID=BOOK.BOOKID AND
 BOOK.AUTHORID=AUTHOR.AUTHORID AND
 STUDENT.SEM=2 AND BRANCH.BNAME="MCA";
-
 +------------+---------------+-------+----------+---------------+
 | USN        | NAME          | BNAME | BOOKNAME | BORROWED_DATE |
 +------------+---------------+-------+----------+---------------+
 | 4VP21MC002 | Akash Krishna | MCA   | DBMS     | 2004-01-01    |
 +------------+---------------+-------+----------+---------------+
 
-
 SELECT * FROM STUDENT
 WHERE USN IN
 (SELECT USN FROM BORROW GROUP BY 
 USN HAVING COUNT(USN)>=2);
+
+SELECT BOOKNAME 
+FROM BOOK
+ORDER BY BOOKNAME DESC;
++----------------------+
+| BOOKNAME             |
++----------------------+
+| Thermo Dynamics      |
+| Research Methodology |
+| DBMS                 |
+| Data Structure       |
++----------------------+
