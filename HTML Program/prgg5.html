@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: block;
+            margin: 20px;
+        }
+        input{
+            margin: 20px;
+        }
+    </style>
+    <script>
+        var usn,sem;
+        function v(){
+           var usn=document.getElementById("usn").value;
+        
+        if(usn.match(/[1-4][A-z]{2}[0-9]{2}[A-Z]{2}[0-9]{2}/) !==null)
+        alert("USN is valid");
+        else
+        alert("USN is not valid");
+        }
+        
+        function s(){
+            var sem=document.getElementById("sem").value;
+        
+        if(sem.match(/[1-6]/) !==null)
+        alert("SEM is valid");
+        else
+        alert("SEM is not valid");
+        }
+    </script>   
+</head>
+<body>
+    <label for="usn">Enter the USN <input type="text" name="usn" id="usn"></label>
+    <input type="button" value="Validate USN" onclick="v()">
+    <label for="sem">Enter the SEMESTER <input type="text" name="sem" id="sem"></label>
+    <input type="button" value="Validate sem" onclick="s()">
+</body>
+</html>
