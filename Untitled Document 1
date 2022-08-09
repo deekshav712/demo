@@ -1,0 +1,164 @@
+create table Team1(Teamid varchar(20) primary key,
+Teamname char(20),
+Coach char(10),
+city char(20));
+alter table Team1 add captainid varchar(20);
+
+create table Player(Playerid varchar(20) primary key,
+Name varchar(20),
+Phno int(10) not null,
+Age int(3) not null,
+Teamid varchar(20),
+foreign key(Teamid) references Team1(Teamid));
+
+create table stadium(Sid varchar(10) primary key,
+Name char(20),
+city char(20),
+areaname char(5),
+pincode int(7));
+
+
+
+create table TMatch(Matchid varchar(20) primary key,
+winnerteamid varchar(20),
+Teamid1 varchar(20),
+Teamid2 varchar(20),
+stime timestamp,
+sdate date,
+Sid varchar(10));
+alter table TMatch add foreign key(Teamid2)  references Team1(Teamid);
+alter table TMatch add foreign key(Teamid2)  references Team1(captainid);
+alter table TMatch add foreign key(sid)  references stadium(sid);
+
+create table MANOFMATCH(Playerid varchar(20) not null, 
+Matchid varchar(20) not null,
+primary key(Playerid,Matchid),
+foreign key(Playerid)  references Player(Playerid),
+ foreign key(Matchid)  references TMatch(Matchid));
+
+mysql> desc Team1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Teamid    | varchar(20) | NO   | PRI | NULL    |       |
+| Teamname  | char(20)    | YES  |     | NULL    |       |
+| Coach     | char(10)    | YES  |     | NULL    |       |
+| city      | char(20)    | YES  |     | NULL    |       |
+| captainid | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Player;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Playerid | varchar(20) | NO   | PRI | NULL    |       |
+| Name     | varchar(20) | YES  |     | NULL    |       |
+| Phno     | int         | NO   |     | NULL    |       |
+| Age      | int         | NO   |     | NULL    |       |
+| Teamid   | varchar(20) | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc stadium;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Sid      | varchar(10) | NO   | PRI | NULL    |       |
+| Name     | char(20)    | YES  |     | NULL    |       |
+| city     | char(20)    | YES  |     | NULL    |       |
+| areaname | char(5)     | YES  |     | NULL    |       |
+| pincode  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> desc TMatch;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Matchid      | varchar(20) | NO   | PRI | NULL    |       |
+| winnerteamid | varchar(20) | YES  |     | NULL    |       |
+| Teamid1      | varchar(20) | YES  |     | NULL    |       |
+| Teamid2      | varchar(20) | YES  | MUL | NULL    |       |
+| stime        | timestamp   | YES  |     | NULL    |       |
+| sdate        | date        | YES  |     | NULL    |       |
+| Sid          | varchar(10) | YES  | MUL | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> desc MANOFMATCH;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Playerid | varchar(20) | NO   | PRI | NULL    |       |
+| Matchid  | varchar(20) | NO   | PRI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+insert into Player(Playerid,name,Phno,Age)values('p01','Akash',34567178,21);
+insert into Player(Playerid,name,Phno,Age)values('p02','Chandan',47189023,20);
+insert into Player(Playerid,name,Phno,Age)values('p03','Mayur',831890241,21);
+insert into Player(Playerid,name,Phno,Age)values('p04','Sajith',78239057,21);
+insert into Player(Playerid,name,Phno,Age)values('p05','Karthik',34013468,21);
+
+insert into Player(Playerid,name,Phno,Age)values('p06','Deepthi',01213468,20);
+insert into Player(Playerid,name,Phno,Age)values('p07','Jhansi',340118945,22);
+insert into Player(Playerid,name,Phno,Age)values('p08','Shruthi',341788468,21);
+insert into Player(Playerid,name,Phno,Age)values('p09','lakshman',34013468,21);
+
+ select * from Player;
++----------+---------+-----------+-----+--------+
+| Playerid | Name    | Phno      | Age | Teamid |
++----------+---------+-----------+-----+--------+
+| p01      | Akash   |  34567178 |  21 | NULL   |
+| p02      | Chandan |  47189023 |  20 | NULL   |
+| p03      | Mayur   | 831890241 |  21 | NULL   |
+| p04      | Sajith  |  78239057 |  21 | NULL   |
+| p05      | Karthik |  34013468 |  21 | NULL   |
++----------+---------+-----------+-----+--------+
+
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T01','RCB','Sibin','Bangalore','p01');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T02','RCB','Sibin','Bangalore','p02');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T06','RCB','Sibin','Bangalore','p06');
+
+update Player set  Teamid='T01' where Playerid in('p01','p02','p06');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T03','CSK','Guru','Mangalore','p03');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T04','CSK','Guru','Mangalore','p04');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T07','CSK','Guru','Mangalore','p07');
+update Player set  Teamid='T03' where Playerid in('p04','p05','p06');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T05','RCB','Sibin','Bangalore','p05');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T08','RCB','Sibin','Bangalore','p08');
+insert into Team1(Teamid,Teamname,Coach,city,captainid)values('T09','RCB','Sibin','Bangalore','p09');
+update Player set  Teamid='T05' where Playerid in('p05','p08','p09');
+mysql> select * from Player;
++----------+----------+-----------+-----+--------+
+| Playerid | Name     | Phno      | Age | Teamid |
++----------+----------+-----------+-----+--------+
+| p01      | Akash    |  34567178 |  21 | T01    |
+| p02      | Chandan  |  47189023 |  20 | T01    |
+| p03      | Mayur    | 831890241 |  21 | T03    |
+| p04      | Sajith   |  78239057 |  21 | T03    |
+| p05      | Karthik  |  34013468 |  21 | T05    |
+| p06      | Deepthi  |   1213468 |  20 | T01    |
+| p07      | Jhansi   | 340118945 |  22 | T03    |
+| p08      | Shruthi  | 341788468 |  21 | T05    |
+| p09      | lakshman |  34013468 |  21 | T05    |
++----------+----------+-----------+-----+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Team1;
++--------+----------+-------+-----------+-----------+
+| Teamid | Teamname | Coach | city      | captainid |
++--------+----------+-------+-----------+-----------+
+| T01    | RCB      | Sibin | Bangalore | p01       |
+| T02    | RCB      | Sibin | Bangalore | p02       |
+| T03    | CSK      | Guru  | Mangalore | p03       |
+| T04    | CSK      | Guru  | Mangalore | p04       |
+| T05    | RCB      | Sibin | Bangalore | p05       |
+| T06    | RCB      | Sibin | Bangalore | p05       |
+| T07    | CSK      | Guru  | Mangalore | p07       |
+| T08    | RCB      | Sibin | Bangalore | p08       |
+| T09    | RCB      | Sibin | Bangalore | p09       
+
+select Teamname from Team1 where Teamid in(select team_id from Player group by(Team_id) order by min(Age));
