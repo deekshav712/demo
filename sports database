@@ -1,0 +1,43 @@
+create table Team(team_id char(5) primary key,
+team_name varchar(10),
+city char(30),
+coach char(10));
+
+alter table Team add captain_id varchar(10);
+insert into Team values('T1','rangers','delhi','varun','c01');
+
+
+create table Player(player_id char(5) primary key,
+name varchar(10),
+contact_no int(10),
+age int(5),
+team_id char(5),
+foreign key(team_id) references Team(team_id));
+
+
+create table Match(match_id char(5) primary key,
+winner_teamid char(5),
+team_id1 char(5),
+team_id2 char(5),
+Sdate date,
+stime char(10),
+stadium_id char(10),
+foreign key(team_id1) references Team(team_id),
+foreign key(team_id2) references Team(captain_id),
+foreign key(winner_teamid) references Team(team_id));
+
+create table Stadium(stadium_id char(5) primary key,
+stadium_name varchar(10),
+city varchar(10),
+area_name char(5),
+pincode int(7),
+foreign key(stadium_id) references Stadium(stadium_id);
+
+
+create table Man_Of_Match(player_id char(5),
+match_id char(5),
+primary key(player_id,match_id),
+foreign key(player_id) references Player(team_id),
+foreign key(match_id) references Match(stadium_id);
+
+
