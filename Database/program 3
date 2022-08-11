@@ -1,0 +1,191 @@
+desc Team;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Team_id    | char(10)    | NO   | PRI | NULL    |       |
+| Team_name  | varchar(20) | YES  |     | NULL    |       |
+| Coach      | varchar(20) | YES  |     | NULL    |       |
+| City       | varchar(20) | YES  |     | NULL    |       |
+| Captain_id | char(10)    | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+select * from Team;
++---------+-----------+---------+-----------+------------+
+| Team_id | Team_name | Coach   | City      | Captain_id |
++---------+-----------+---------+-----------+------------+
+| T01     | RCB       | Dravid  | Bangalore | P01        |
+| T02     | MI        | Gambhir | Mysore    | P02        |
+| T03     | KKR       | Jadeja  | Hassan    | P03        |
+| T04     | CSK       | Uthapa  | Mangalore | P04        |
+| T05     | KXIP      | Shreyas | Tumkur    | P05        |
++---------+-----------+---------+-----------+------------+
+
+
+desc Player;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Player_id   | char(10)    | NO   | PRI | NULL    |       |
+| Player_name | varchar(20) | YES  |     | NULL    |       |
+| Age         | int         | YES  |     | NULL    |       |
+| Ph_no       | char(20)    | YES  |     | NULL    |       |
+| Team_id     | char(10)    | YES  | MUL | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+select * from Player;
++-----------+-------------+------+------------+---------+
+| Player_id | Player_name | Age  | Ph_no      | Team_id |
++-----------+-------------+------+------------+---------+
+| P01       | Sachin      |   45 | 8296289864 | T01     |
+| P02       | Dhoni       |   35 | 6364651270 | T02     |
+| P03       | Chahal      |   30 | 9663782026 | T03     |
+| P04       | Padikal     |   28 | 9741178755 | T04     |
+| P05       | Rohith      |   40 | 9008284434 | T05     |
+| P06       | Virat       |   42 | 7338564850 | NULL    |
+| P07       | kohli       |   50 | 9449129979 | NULL    |
++-----------+-------------+------+------------+---------+
+
+
+desc Match1;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| Match_id   | char(10) | NO   | PRI | NULL    |       |
+| Winner_id  | char(10) | YES  | MUL | NULL    |       |
+| Date       | date     | YES  |     | NULL    |       |
+| Time       | time     | YES  |     | NULL    |       |
+| Team1_id   | char(10) | YES  | MUL | NULL    |       |
+| Team2_id   | char(10) | YES  | MUL | NULL    |       |
+| Stadium_id | char(10) | YES  | MUL | NULL    |       |
++------------+----------+------+-----+---------+-------+
+
+select * from Match1;
++----------+-----------+------------+----------+----------+----------+------------+
+| Match_id | Winner_id | Date       | Time     | Team1_id | Team2_id | Stadium_id |
++----------+-----------+------------+----------+----------+----------+------------+
+| M01      | T01       | 1999-05-21 | 10:45:55 | T01      | T02      | S01        |
+| M02      | T03       | 1998-06-11 | 09:10:30 | T03      | T04      | S02        |
+| M03      | T04       | 2000-10-12 | 01:00:00 | T05      | T04      | S03        |
+| M04      | T02       | 2002-10-28 | 07:34:23 | T02      | T03      | S04        |
+| M05      | T02       | 2001-06-29 | 11:10:44 | T02      | T05      | S05        |
+| M06      | T05       | 1997-12-31 | 12:59:59 | T03      | T05      | S05        |
+| M07      | T01       | 1996-03-16 | 06:12:41 | T03      | T01      | S01        |
++----------+-----------+------------+----------+----------+----------+------------+
+
+
+desc Stadium;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Stadium_id   | char(10)    | NO   | PRI | NULL    |       |
+| Stadium_name | varchar(20) | YES  |     | NULL    |       |
+| city         | varchar(20) | YES  |     | NULL    |       |
+| Area         | varchar(20) | YES  |     | NULL    |       |
+| Pincode      | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+select * from Stadium;
++------------+---------------+------------+------------+---------+
+| Stadium_id | Stadium_name  | city       | Area       | Pincode |
++------------+---------------+------------+------------+---------+
+| S01        | RNShetty      | Dharwad    | Begur      |  581204 |
+| S02        | MahathmaGandi | Udupi      | Parkal     |  576103 |
+| S03        | Bendre        | Huballi    | Agadi      |  581207 |
+| S04        | KSCA          | Belagavi   | Athani     |  591304 |
+| S05        | Nehru         | Shibvamoga | Badravathi |  577227 |
++------------+---------------+------------+------------+---------+
+
+
+
+desc ManOfMatch;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| Player_id | char(10) | NO   | PRI | NULL    |       |
+| Match_id  | char(10) | NO   | PRI | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+
+select * from ManOfMatch;
++-----------+----------+
+| Player_id | Match_id |
++-----------+----------+
+| P01       | M01      |
+| P02       | M02      |
+| P03       | M03      |
+| P04       | M04      |
+| P05       | M05      |
+| P07       | M05      |
+| P01       | M06      |
+| P06       | M06      |
+| P07       | M06      |
+| P01       | M07      |
+| P07       | M07      |
++-----------+----------+
+------------------------------------------------------------------------------------------------------------------------------
+queries:
+
+display the youngest player name,team name,age in which 
+he belongs to the tournament
+
+select Player_name,Team_name,Age 
+from Player p,Team t
+where p.Team_id=t.Team_id
+and Age=(select min(Age) from Player);
++-------------+-----------+------+
+| Player_name | Team_name | Age  |
++-------------+-----------+------+
+| Padikal     | CSK       |   28 |
++-------------+-----------+------+
+
+
+list the details of stadium where the maximum of match played
+
+select * from Stadium
+where Stadium_id=(select Stadium_id
+from Match1 
+group by Stadium_id
+order by count(Stadium_id) desc limit 1);
++------------+--------------+---------+-------+---------+
+| Stadium_id | Stadium_name | city    | Area  | Pincode |
++------------+--------------+---------+-------+---------+
+| S01        | RNShetty     | Dharwad | Begur |  581204 |
++------------+--------------+---------+-------+---------+
+
+
+list the details of the player who is not a captain but got the
+man of match award atleast in 2 matches
+
+select * from Player
+where Player_id in(select Player_id from ManOfMatch
+where Player_id not in(
+select Captain_id from Team)
+group by Player_id
+having count(Player_id)>=2);
++-----------+-------------+------+------------+---------+
+| Player_id | Player_name | Age  | Ph_no      | Team_id |
++-----------+-------------+------+------------+---------+
+| P07       | kohli       |   50 | 9449129979 | NULL    |
++-----------+-------------+------+------------+---------+
+
+
+display the team details who won maximum matches
+
+select * from Team
+where Team_id=(select Winner_id 
+from Match1 group by Winner_id 
+order by count(Match1.Winner_id)desc limit 1);
++---------+-----------+--------+-----------+------------+
+| Team_id | Team_name | Coach  | City      | Captain_id |
++---------+-----------+--------+-----------+------------+
+| T01     | RCB       | Dravid | Bangalore | P01        |
++---------+-----------+--------+-----------+------------+
+
+
+
+
+
+
+
+
+
+
