@@ -124,7 +124,7 @@ select * from ManOfMatch;
 ------------------------------------------------------------------------------------------------------------------------------
 queries:
 
-display the youngest player name,team name,age in which 
+1)display the youngest player name,team name,age in which 
 he belongs to the tournament
 
 select Player_name,Team_name,Age 
@@ -138,7 +138,7 @@ and Age=(select min(Age) from Player);
 +-------------+-----------+------+
 
 
-list the details of stadium where the maximum of match played
+2)list the details of stadium where the maximum of match played
 
 select * from Stadium
 where Stadium_id=(select Stadium_id
@@ -152,7 +152,7 @@ order by count(Stadium_id) desc limit 1);
 +------------+--------------+---------+-------+---------+
 
 
-list the details of the player who is not a captain but got the
+3)list the details of the player who is not a captain but got the
 man of match award atleast in 2 matches
 
 select * from Player
@@ -168,7 +168,7 @@ having count(Player_id)>=2);
 +-----------+-------------+------+------------+---------+
 
 
-display the team details who won maximum matches
+4)display the team details who won maximum matches
 
 select * from Team
 where Team_id=(select Winner_id 
