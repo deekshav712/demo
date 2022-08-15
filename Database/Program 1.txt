@@ -255,7 +255,7 @@ WHERE exists(SELECT br.USN
 FROM BORROW br,BOOK bk
    WHERE br.bookid=bk.bookid AND br.USN=S.USN
     GROUP BY USN
-    HAVING COUNT(DISTINCT authorid)>1;
+    HAVING COUNT(DISTINCT authorid)>1);
 
 
 query 7:Display the Book names in descending order of their names.
@@ -276,7 +276,7 @@ ORDER BY BOOKNAME DESC;
 query 8:list the details of student who borrowed the books which are all published by the same publisher.
 
 SELECT * FROM STUDENT s 
-WHERE exists(SELECT USN,publisher 
+WHERE exists(SELECT br.USN,publisher 
 from BORROW br,BOOK bk
 WHERE br.bookid=bk.bookid
 AND s.USN=br.USN
