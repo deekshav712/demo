@@ -250,9 +250,10 @@ USN HAVING COUNT(USN)>=2);
 
 query 6:Display the student details who borrowed books of more than one Author.
 
-SELECT br.USN
+SELECT * FROM STUDENT s
+WHERE exists(SELECT br.USN
 FROM BORROW br,BOOK bk
-   WHERE br.bookid=br AND br.USN=S.USN
+   WHERE br.bookid=bk.bookid AND br.USN=S.USN
     GROUP BY USN
     HAVING COUNT(DISTINCT authorid)>1;
 
@@ -274,10 +275,10 @@ ORDER BY BOOKNAME DESC;
 
 query 8:list the details of student who borrowed the books which are all published by the same publisher.
 
-SELECT USN,publisher 
+SELECT * FROM STUDENT s 
+WHERE exists(SELECT USN,publisher 
 from BORROW,BOOK
 WHERE BORROW.bookid=BOOK.bookid
-AND
-s.USN=BORROW.USN
+AND s.USN=BORROW.USN
 GROUP BY USN
 HAVING COUNT(DISTINCT publisher)=1);
