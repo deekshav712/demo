@@ -277,8 +277,8 @@ query 8:list the details of student who borrowed the books which are all publish
 
 SELECT * FROM STUDENT s 
 WHERE exists(SELECT USN,publisher 
-from BORROW,BOOK
-WHERE BORROW.bookid=BOOK.bookid
-AND s.USN=BORROW.USN
+from BORROW br,BOOK bk
+WHERE br.bookid=bk.bookid
+AND s.USN=br.USN
 GROUP BY USN
 HAVING COUNT(DISTINCT publisher)=1);
