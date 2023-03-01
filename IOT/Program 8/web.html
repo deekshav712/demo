@@ -1,0 +1,29 @@
+<html>
+	<body style="background-color:pink">
+	  <title>Rabery pi remote control</title>
+	  <h1>Rabery pi remote control</h1>
+	<h2>Light status : {{status}},last modified: {{time}}</h2>
+	<form action="http://172.16.201.210:4000/redledon">
+	<input type="submit" value="Red LED On">
+	</form>
+	<form action="http://172.16.201.210:4000/redledoff">
+	<input type="submit" value="Red LED Off">
+	</form>
+	<--for buzzer !-->
+		<h2>BUZZ status : {{bstatus}},last modified: {{time}}</h2>
+	<form action="http://172.16.201.206:4000/buzzon">
+	<input type="submit" value="buzz On">
+	</form>
+	<form action="http://172.16.201.206:4000/buzzoff">
+	<input type="submit" value="buzz Off">
+	</form>
+	<--for realy !-->
+		<h2>relay status : {{rstatus}},last modified: {{time}}</h2>
+	<form action="http://172.16.201.206:4000/relayon">
+	<input type="submit" value="relay On">
+	</form>
+	<form action="http://172.16.201.206:4000/realyoff">
+	<input type="submit" value="relay Off">
+	</form>
+	</body>
+</html>
