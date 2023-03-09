@@ -1,7 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 import datetime
+
 led=13 #buzzer-36, relay-38 led=13
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(led,GPIO.OUT,initial=0)
@@ -9,6 +11,7 @@ GPIO.setup(led,GPIO.OUT,initial=0)
 
 from flask import Flask,render_template
 app=Flask(__name__)
+
 @app.route('/')
 def hello_world():
 	return render_template('web.html')
